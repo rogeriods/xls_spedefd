@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+    {% if msg == False %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Erro!</strong> Não foi possível gerar o arquivo, verifique se o layout do xls atende os requisitos.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+
+    <h1 class="display-4">Bloco (0200, H e K)</h1>
+    <p class="lead">
+        Selecione um arquivo XLS padrão para a conversão do bloco H. <br />
+        <code>Lembre-se! Se o layout está conforme documentado.</code>
+    </p>
+    <form method=post enctype=multipart/form-data> 
+        <input type=file name=file />
+        <input type=submit value=Converter... />
+    </form>
+</div>
+
+{% endblock %}

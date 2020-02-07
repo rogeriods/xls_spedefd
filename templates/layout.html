@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor XLS/SpedEFD</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <div class="navbar-brand">
+          <span>Conversor XLS/SpedEFD</span>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#conteudoNavbarSuportado"
+          aria-controls="conteudoNavbarSuportado"
+          aria-expanded="false"
+          aria-label="Alterna navegação"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+          {% if session.logged_in %}
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/blocoh">Bloco (0200, H e K)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('static', filename='xls/arquivo_modelo.xls') }}">
+                Download do Arquivo XLS Padrão
+              </a>
+            </li>
+          </ul>
+          <a class="btn btn-outline-light my-2 my-sm-0" href="{{ url_for('logout') }}">
+            Logout ({{ session.sped_username }})
+          </a>
+          {% else %}
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          </ul>
+          <a class="btn btn-outline-light my-2 my-sm-0" href="{{ url_for('login') }}">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="container body-content">
+      {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
